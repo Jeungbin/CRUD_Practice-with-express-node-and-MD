@@ -25,7 +25,8 @@ app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
 app.use("/img", express.static(path.resolve(__dirname, "assets/img")));
 
 app.get("/", (req, res) => {
-  res.send("crud");
+  res.render("index");
+  // allows to render HTML file
 });
 
 app.listen(PORT, () => {
