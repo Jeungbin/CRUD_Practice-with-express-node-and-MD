@@ -1,15 +1,12 @@
 const axios = require("axios");
-// this module is going to allow us to make a request
 
 exports.homeRoutes = (req, res) => {
-  //Make a get request to /api/users
-  // this get request is going to return promise
+  // Make a get request to /api/users
   axios
     .get("http://localhost:3000/api/users")
-    .then((response) => {
-      console.log(response.data);
+    // get all the data
+    .then(function (response) {
       res.render("index", { users: response.data });
-      // first is index.js / second data has all the records of mongoDB
     })
     .catch((err) => {
       res.send(err);
@@ -21,5 +18,13 @@ exports.add_user = (req, res) => {
 };
 
 exports.update_user = (req, res) => {
-  res.render("update_user");
+  axios
+    .get("http://localhost:3000/api/users", { params: { id: req.query.id } })
+    // get specific data
+    .then(function (userdata) {
+      res.render("update_user", { user: userdata.data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };

@@ -1,7 +1,5 @@
 const express = require("express");
 const route = express.Router();
-// route => this app will create new app
-// this method allows us to create different router in a separate file
 
 const services = require("../services/render");
 const controller = require("../controller/controller");
@@ -24,14 +22,10 @@ route.get("/add-user", services.add_user);
  */
 route.get("/update-user", services.update_user);
 
-//API
-// pst , get , put, delete => call request
-///api/users => path / controller.create => call back function
+// API
 route.post("/api/users", controller.create);
 route.get("/api/users", controller.find);
-// using find method to find a data
 route.put("/api/users/:id", controller.update);
-route.delete("/api/users:/id", controller.delete);
+route.delete("/api/users/:id", controller.delete);
 
 module.exports = route;
-// you can use any file
